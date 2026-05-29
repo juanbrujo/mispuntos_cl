@@ -1,0 +1,85 @@
+/*
+  Theme tokens for Tailwind (light/dark) based on _design/DESIGN-light.md and DESIGN-dark.md
+  - Light: Andino Rewards
+  - Dark: Geist-Neural High Contrast
+*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 249 33% 99%; /* #f9f9fc */
+    --foreground: 228 10% 10%; /* #1a1c1e */
+    --card: 0 0% 100%; /* #fff */
+    --card-foreground: 228 10% 10%; /* #1a1c1e */
+    --primary: 226 100% 39%; /* #003dc7 */
+    --primary-foreground: 0 0% 100%; /* #fff */
+    --secondary: 173 100% 21%; /* #006a62 */
+    --secondary-foreground: 0 0% 100%; /* #fff */
+    --accent: 16 97% 37%; /* #bf2f02 */
+    --accent-foreground: 0 0% 100%; /* #fff */
+    --muted: 240 6% 92%; /* #eeeef0 */
+    --muted-foreground: 228 10% 30%; /* #434656 */
+    --destructive: 0 74% 41%; /* #ba1a1a */
+    --destructive-foreground: 0 0% 100%; /* #fff */
+    --border: 240 6% 86%; /* #dadadc */
+    --input: 240 6% 86%; /* #dadadc */
+    --ring: 226 100% 39%; /* #003dc7 */
+    --radius: 0.5rem;
+    --surface: 249 33% 99%; /* #f9f9fc */
+    --surface-container: 240 6% 93%; /* #f3f3f6 */
+    --surface-container-high: 240 6% 91%; /* #e8e8ea */
+    --surface-container-highest: 240 6% 89%; /* #e2e2e5 */
+    --surface-dim: 240 6% 86%; /* #dadadc */
+    --surface-bright: 249 33% 99%; /* #f9f9fc */
+    --outline: 228 10% 50%; /* #737688 */
+    --outline-variant: 228 20% 85%; /* #c3c5d9 */
+    --surface-tint: 226 100% 39%; /* #004bee */
+    --error: 0 74% 41%; /* #ba1a1a */
+    --error-foreground: 0 0% 100%; /* #fff */
+    --error-container: 0 100% 93%; /* #ffdad6 */
+    --on-error-container: 354 100% 29%; /* #93000a */
+    /* Typography */
+    --font-display: 'Geist', sans-serif;
+    --font-body: 'Geist', sans-serif;
+    --font-label: 'JetBrains Mono', monospace;
+  }
+  .dark {
+    --background: 0 0% 8%; /* #131313 */
+    --foreground: 30 10% 90%; /* #e5e2e1 */
+    --card: 0 0% 8%; /* #131313 */
+    --card-foreground: 30 10% 90%; /* #e5e2e1 */
+    --primary: 226 100% 80%; /* #b7c4ff */
+    --primary-foreground: 226 100% 13%; /* #002583 */
+    --secondary: 191 100% 80%; /* #a2e7ff */
+    --secondary-foreground: 210 100% 13%; /* #003642 */
+    --accent: 16 97% 70%; /* #ffb4a1 */
+    --accent-foreground: 16 97% 20%; /* #611300 */
+    --muted: 0 0% 12%; /* #201f1f */
+    --muted-foreground: 228 10% 80%; /* #c3c5d9 */
+    --destructive: 0 100% 80%; /* #ffb4ab */
+    --destructive-foreground: 354 100% 20%; /* #690005 */
+    --border: 0 0% 20%; /* #353534 */
+    --input: 0 0% 20%; /* #353534 */
+    --ring: 226 100% 80%; /* #b7c4ff */
+    --radius: 0.25rem;
+    --surface: 0 0% 8%; /* #131313 */
+    --surface-container: 0 0% 12%; /* #201f1f */
+    --surface-container-high: 0 0% 16%; /* #2a2a2a */
+    --surface-container-highest: 0 0% 21%; /* #353534 */
+    --surface-dim: 0 0% 8%; /* #131313 */
+    --surface-bright: 0 0% 22%; /* #3a3939 */
+    --outline: 228 10% 60%; /* #8d90a2 */
+    --outline-variant: 228 20% 30%; /* #434656 */
+    --surface-tint: 226 100% 80%; /* #b7c4ff */
+    --error: 0 100% 80%; /* #ffb4ab */
+    --error-foreground: 354 100% 20%; /* #690005 */
+    --error-container: 354 100% 29%; /* #93000a */
+    --on-error-container: 0 100% 93%; /* #ffdad6 */
+    /* Typography */
+    --font-display: 'Geist', sans-serif;
+    --font-body: 'Geist', sans-serif;
+    --font-label: 'JetBrains Mono', monospace;
+  }
+}

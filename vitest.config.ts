@@ -1,5 +1,7 @@
 import { defineVitestConfig } from '@nuxt/test-utils/config'
 
+import path from 'path'
+
 export default defineVitestConfig({
   test: {
     environment: 'nuxt',
@@ -25,6 +27,10 @@ export default defineVitestConfig({
         '**/*.spec.*',
         '**/types/**'
       ]
+    },
+    alias: {
+      '@@': path.resolve(__dirname, '.'),
+      '@': path.resolve(__dirname, 'app')
     }
   }
 })

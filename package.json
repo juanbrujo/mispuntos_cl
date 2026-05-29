@@ -1,6 +1,6 @@
 {
-  "name": "MisPuntosCL",
-  "type": "module",
+  "name": "millas-puntos",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "build": "nuxt build",
@@ -28,11 +28,13 @@
     "@nuxtjs/color-mode": "^4.0.0",
     "@nuxtjs/tailwindcss": "^6.14.0",
     "@pinia/nuxt": "^0.11.3",
+    "@vite-pwa/nuxt": "^1.1.1",
     "@vitest/coverage-v8": "^4.1.7",
     "@vue/test-utils": "^2.4.10",
     "happy-dom": "^20.9.0",
     "husky": "^9.1.7",
     "shadcn-nuxt": "^2.7.3",
+    "vite-tsconfig-paths": "^6.1.1",
     "vitest": "^4.1.7"
   }
 }
