@@ -1,5 +1,5 @@
 <template>
-  <footer class="w-full flex flex-col items-center gap-md px-[var(--margin-mobile)] md:px-[var(--margin-desktop)] text-center py-xl mt-xl bg-surface-container-low border-t border-outline-variant">
+  <footer class="w-full flex flex-col items-center gap-md px-[var(--margin-mobile)] md:px-[var(--margin-desktop)] text-center py-xl mt-sm bg-surface-container-low border-t border-outline-variant">
     <p class="font-body-sm text-sm font-light text-stone-400 max-w-2xl">
       Los valores son referenciales y pueden variar según promociones vigentes. Las conversiones se basan en canjes estándar de catálogo.
     </p>

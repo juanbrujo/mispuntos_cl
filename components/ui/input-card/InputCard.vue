@@ -21,14 +21,14 @@
           :placeholder="inputPlaceholder"
           type="text"
           :value="formattedValue"
-          minlength="4"
-          maxlength="8"
           :readonly="isMobile"
           :tabindex="isMobile ? 0 : 1"
-          @input="$emit('update:inputValue', $event.target.value.replace(/\D/g, ''))"
+          @beforeinput="onBeforeInput"
+          @input="onDesktopInput"
           @click="onInputClick"
           inputmode="numeric"
           autocomplete="off"
+          maxlength="8"
         />
       </div>
     </div>
@@ -38,12 +38,25 @@
 
 <script setup lang="ts">
 import { defineProps, defineEmits, ref, onMounted, computed } from 'vue'
+
+const props = defineProps<{
+  label: string
+  programOptions: ProgramOption[]
+  selectedProgram: string
+  inputValue: string | number
+  inputPlaceholder?: string
+  inputPrefix?: string
+  programIcon?: string
+  validationMsg?: string
+}>()
+
 // Formatear inputValue como miles
 const formattedValue = computed(() => {
-  const val = String(props.inputValue).replace(/\D/g, '')
+const val = String(props.inputValue).replace(/\D/g, '')
   if (!val) return ''
   return Number(val).toLocaleString('es-CL')
 })
+
 // Detectar móvil (simple, por ancho de pantalla)
 const isMobile = ref(false)
 onMounted(() => {
@@ -56,6 +69,21 @@ const emit = defineEmits([
   'open-keyboard',
 ])
 
+function onBeforeInput(e: Event) {
+  const ie = e as InputEvent
+  const data = ie.data
+  if (data && !/^\d*$/.test(data)) {
+    ie.preventDefault()
+  }
+}
+
+function onDesktopInput(e: Event) {
+  const target = e.target as HTMLInputElement
+  let raw = target.value.replace(/\D/g, '')
+  if (raw.length > 8) raw = raw.slice(0, 8)
+  emit('update:inputValue', raw)
+}
+
 function onInputClick(e: Event) {
   if (isMobile.value) {
     e.preventDefault()
@@ -67,15 +95,15 @@ export interface ProgramOption {
   value: string
   label: string
 }
-
-const props = defineProps<{
-  label: string
-  programOptions: ProgramOption[]
-  selectedProgram: string
-  inputValue: string | number
-  inputPlaceholder?: string
-  inputPrefix?: string
-  programIcon?: string
-  validationMsg?: string
-}>()
 </script>
+
+<style scoped>
+select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+  print-color-adjust: exact;
+}
+</style>

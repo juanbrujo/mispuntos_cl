@@ -1,6 +1,6 @@
 
 <template>
-  <div class="program-card flex items-center bg-surface-container-lowest border border-outline-variant rounded-md overflow-hidden relative p-4 group cursor-pointer hover:shadow-md hover:bg-surface-container-low transition-all duration-[0.2s] ease-in-out active:scale-[0.98]">
+  <div class="program-card flex items-center bg-surface-container-lowest border border-outline-variant rounded-md overflow-hidden relative p-4 group cursor-grabbing hover:shadow-md hover:bg-surface-container-low transition-all duration-[0.2s] ease-in-out active:scale-[0.98]">
     <!-- Color Strip -->
     <div class="absolute left-0 top-0 bottom-0 w-1" :style="{ backgroundColor: programColor }"></div>
 
@@ -21,10 +21,9 @@
       </p>
     </div>
 
-    <!-- Acciones y chip -->
+    <!-- Acciones -->
     <div class="flex gap-2 items-center">
-      <span class="material-symbols-outlined text-outline md:hidden">drag_handle</span>
-      <span class="material-symbols-outlined text-outline opacity-0 md:group-hover:opacity-100 transition-opacity">grid_view</span>
+      <span class="material-symbols-outlined text-outline display-block md:display-none">drag_handle</span>
     </div>
   </div>
 </template>

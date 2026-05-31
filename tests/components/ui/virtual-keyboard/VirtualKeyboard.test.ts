@@ -3,10 +3,10 @@ import { describe, it, expect } from 'vitest'
 import VirtualKeyboard from '@/components/ui/virtual-keyboard/VirtualKeyboard.vue'
 
 describe('VirtualKeyboard', () => {
-  it('renderiza las teclas y el botón Listo', () => {
+  it('renderiza las teclas y el botón Cerrar', () => {
     const wrapper = mount(VirtualKeyboard, { props: { visible: true } })
     expect(wrapper.findAll('button.keyboard-key').length).toBe(12)
-    expect(wrapper.text()).toContain('Listo')
+    expect(wrapper.text()).toContain('Cerrar')
   })
 
   it('emite key al presionar un número', async () => {

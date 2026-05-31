@@ -1,4 +1,11 @@
 <template>
+  <!-- Overlay para cerrar al hacer click fuera -->
+  <div
+    v-show="visible"
+    class="fixed inset-0 z-[59] md:hidden"
+    @click="onDone"
+  />
+
   <div
     v-show="true"
     class="fixed bottom-0 left-0 w-full bg-surface-container-highest border-t border-outline-variant transition-transform duration-300 z-[60] md:hidden"
@@ -13,7 +20,10 @@
       </button>
     </div>
     <div class="bg-surface-container-high py-2 flex justify-center">
-      <button class="text-primary font-bold px-8 py-2" @click="onDone">Listo</button>
+      <button class="text-primary font-bold px-8 py-2 w-full flex items-center justify-center gap-1" @click="onDone">
+        Cerrar
+        <span class="material-symbols-outlined">keyboard_arrow_down</span>
+      </button>
     </div>
   </div>
 </template>
