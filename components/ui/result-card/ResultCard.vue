@@ -11,7 +11,7 @@
 
     <!-- Info principal -->
     <div class="flex-grow">
-      <p class="font-label-sm text-label-sm text-on-surface-variant">
+      <p class="font-label-sm text-label-sm text-on-surface-variant uppercase">
         {{ programName }}
         <span v-if="chipLabel" class="ml-2 px-3 py-1 rounded-full text-xs font-bold" :style="{ background: chipColor, color: chipTextColor }">{{ chipLabel }}</span>
       </p>
@@ -23,7 +23,7 @@
 
     <!-- Acciones -->
     <div class="flex gap-2 items-center">
-      <span class="material-symbols-outlined text-outline display-block md:display-none">drag_handle</span>
+      <span class="material-symbols-outlined drag-handle text-outline display-inline-block md:display-none">drag_handle</span>
     </div>
   </div>
 </template>

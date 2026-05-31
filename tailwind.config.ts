@@ -8,6 +8,9 @@ export default <Config>{
     './layouts/**/*.{vue,js,ts,jsx,tsx}',
     './error.vue'
   ],
+  safelist: [
+    'bg-primary/[0.04]',
+  ],
   theme: {
     extend: {
       colors: {
