@@ -30,7 +30,16 @@
                   <span class="text-outline">Canje / valor:</span>
                   <span>{{ getRateDesc(p) }}</span>
                   <span class="text-outline">Fuente:</span>
-                  <span class="break-all">{{ getSource(p) }}</span>
+                  <span>
+                    <a
+                      v-if="getSource(p).startsWith('http')"
+                      :href="getSource(p)"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-primary underline hover:no-underline break-all"
+                    >{{ getSource(p) }}</a>
+                    <span v-else class="break-all">{{ getSource(p) }}</span>
+                  </span>
                 </dd>
               </div>
             </dl>
@@ -59,28 +68,35 @@ const emit = defineEmits<{
 }>()
 
 function getRateDesc(p: Program): string {
-  if (p.getRate) {
-    if (p.id === 'latam') return 'USD 0,032 por milla al TC'
-    if (p.id === 'sky') return '~USD 0,01/pto (ref. mercado)'
-    if (p.id === 'bchile') return '1 Dólar Premio = 1 USD al TC'
+  const descs: Record<string, string> = {
+    clp: 'Referencia CLP',
+    cencosud: '1 pt cada $300',
+    latam: 'USD 0,032 por milla al TC',
+    lider: '6% cashback',
+    cmr: '1 pt cada $200',
+    bchile: '1 DP ≈ $903 CLP',
+    ripley: '1 pt cada $125',
+    sky: '~USD 0,01/pto (ref. mercado)',
+    itau: '1,5 pts cada $350',
+    bciplus: '1% cashback',
+    copec: '1 pt cada $100',
   }
-  if (p.rate === 1) return p.id === 'clp' ? 'Referencia CLP' : '1:1 con CLP'
-  return `${(1 / p.rate).toFixed(0)} CLP por unidad`
+  return descs[p.id] ?? '—'
 }
 
 function getSource(p: Program): string {
   const sources: Record<string, string> = {
-    clp: 'Banco Central de Chile',
-    cencosud: 'puntoscencosud.cl',
-    latam: 'latampass.latam.com/es_cl',
-    lider: 'liderbci.cl/mi-club',
-    cmr: 'cmrpuntos.cl',
-    bchile: 'travel.cl / bancodechile.cl',
-    ripley: 'home.ripley.cl/minisitios/ripleypuntos',
-    sky: 'skyairline.com/cl/sky-plus',
-    itau: 'itaubeneficios.cl',
-    bciplus: 'bci.cl/personas/tarjetas/bciplus',
-    copec: 'fullcopec.cl',
+    clp: 'https://www.bcentral.cl/',
+    cencosud: 'https://puntoscencosud.cl',
+    latam: 'https://latampass.latam.com/es_cl',
+    lider: 'https://liderbci.cl/mi-club',
+    cmr: 'https://cmrpuntos.cl',
+    bchile: 'https://travel.cl',
+    ripley: 'https://home.ripley.cl/minisitios/ripleypuntos',
+    sky: 'https://skyairline.com/cl/sky-plus',
+    itau: 'https://itaubeneficios.cl',
+    bciplus: 'https://bci.cl/personas/tarjetas/bciplus',
+    copec: 'https://fullcopec.cl',
   }
   return sources[p.id] ?? '—'
 }

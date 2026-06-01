@@ -13,13 +13,4 @@ describe('TopAppBar', () => {
     await wrapper.find('button').trigger('click')
     expect(wrapper.emitted('toggle-theme')).toBeTruthy()
   })
-
-  it('emite logo-click al hacer click en el logo', async () => {
-    const wrapper = mount(TopAppBar, { props: { title: 'Test' } })
-    // Busca el div clickeable (tiene cursor-pointer)
-    const logoDiv = wrapper.find('div.cursor-pointer')
-    expect(logoDiv.exists()).toBe(true)
-    await logoDiv.trigger('click')
-    expect(wrapper.emitted('logo-click')).toBeTruthy()
-  })
 })

@@ -130,4 +130,49 @@ describe('InputCard', () => {
     })
     expect(wrapper.text()).toContain('940')
   })
+
+  it('beforeinput con letra previene el ingreso', async () => {
+    const wrapper = mount(InputCard, {
+      props: {
+        label: 'Conversión',
+        programOptions,
+        selectedProgram: 'clp',
+        inputValue: ''
+      }
+    })
+    const input = wrapper.find('input')
+    const beforeInputEvent = new InputEvent('beforeinput', { data: 'a', inputType: 'insertText' })
+    const preventDefaultSpy = vi.spyOn(beforeInputEvent, 'preventDefault')
+    await input.element.dispatchEvent(beforeInputEvent)
+    expect(preventDefaultSpy).toHaveBeenCalled()
+  })
+
+  it('beforeinput con dígito no previene el ingreso', async () => {
+    const wrapper = mount(InputCard, {
+      props: {
+        label: 'Conversión',
+        programOptions,
+        selectedProgram: 'clp',
+        inputValue: ''
+      }
+    })
+    const input = wrapper.find('input')
+    const beforeInputEvent = new InputEvent('beforeinput', { data: '5', inputType: 'insertText' })
+    const preventDefaultSpy = vi.spyOn(beforeInputEvent, 'preventDefault')
+    await input.element.dispatchEvent(beforeInputEvent)
+    expect(preventDefaultSpy).not.toHaveBeenCalled()
+  })
+
+  it('click en input no emite open-keyboard en desktop', async () => {
+    const wrapper = mount(InputCard, {
+      props: {
+        label: 'Conversión',
+        programOptions,
+        selectedProgram: 'clp',
+        inputValue: '10000'
+      }
+    })
+    await wrapper.find('input').trigger('click')
+    expect(wrapper.emitted('open-keyboard')).toBeFalsy()
+  })
 })

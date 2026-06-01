@@ -4,9 +4,20 @@
     <!-- Color Strip -->
     <div class="absolute left-0 top-0 bottom-0 w-1" :style="{ backgroundColor: programColor }"></div>
 
-    <!-- Icono en círculo -->
-    <div class="flex items-center justify-center w-12 h-12 rounded-full mr-md" :style="{ backgroundColor: programColor + '15' }">
-      <span v-if="programIcon" class="material-symbols-outlined" :style="{ color: programColor }">{{ programIcon }}</span>
+    <!-- Checkbox / Icono -->
+    <div
+      class="flex items-center justify-center w-12 h-12 rounded-full mr-md cursor-pointer transition-all duration-200 select-none"
+      :style="{ border: '2px solid ' + programColor, backgroundColor: checked ? programColor : 'transparent' }"
+      @click="$emit('toggle')"
+    >
+      <!-- Check animado cuando está seleccionado -->
+      <span
+        v-if="checked"
+        class="material-symbols-outlined text-white transition-transform duration-300 ease-out"
+        style="transform: scale(1); font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;"
+      >check</span>
+      <!-- Icono del programa cuando no está seleccionado -->
+      <span v-else-if="programIcon" class="material-symbols-outlined" :style="{ color: programColor }">{{ programIcon }}</span>
     </div>
 
     <!-- Info principal -->
@@ -29,16 +40,21 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
+
 
 const props = defineProps<{
   programName: string
-  programIcon?: string // nombre del icono material-symbols
+  programIcon?: string
   programColor: string
   points: string | number
   unit?: string
   chipLabel?: string
   chipColor?: string
   chipTextColor?: string
+  checked?: boolean
+}>()
+
+const emit = defineEmits<{
+  (e: 'toggle'): void
 }>()
 </script>

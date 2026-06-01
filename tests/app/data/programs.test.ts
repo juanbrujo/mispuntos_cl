@@ -30,10 +30,9 @@ describe('programs', () => {
     expect(latam!.getRate!(940)).toBeCloseTo(1 / (0.032 * 940), 10)
   })
 
-  it('bchile getRate es correcto con USD 940', () => {
+  it('bchile rate es ~1/903 según canje real', () => {
     const bchile = programs.find(p => p.id === 'bchile')
-    expect(bchile?.getRate).toBeDefined()
-    expect(bchile!.getRate!(940)).toBeCloseTo(1 / (100 * 940), 10)
+    expect(bchile?.rate).toBeCloseTo(1 / 903, 6)
   })
 
   it('sky getRate es correcto con USD 940', () => {

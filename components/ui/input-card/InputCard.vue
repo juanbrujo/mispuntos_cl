@@ -4,9 +4,9 @@
     <div class="flex flex-col md:flex-row gap-md">
       <div class="relative flex-1">
         <select
-          class="w-full h-14 pl-12 pr-4 rounded-md border-2 border-outline-variant bg-surface focus:border-primary focus:ring-0 outline-none appearance-none font-medium text-headline-sm font-headline-sm transition-all cursor-pointer font-['Geist_Mono',monospace]"
+          class="w-full h-14 pl-12 pr-4 rounded-md border-2 border-outline-variant bg-surface focus:border-primary focus:ring-0 outline-none appearance-none font-medium text-headline-sm transition-all cursor-pointer font-['Geist_Mono',monospace]"
           :value="selectedProgram"
-          @change="$emit('update:selectedProgram', $event.target.value)"
+          @change="(e: any) => $emit('update:selectedProgram', (e.target as HTMLSelectElement).value)"
         >
           <option v-for="option in programOptions" :key="option.value" :value="option.value">
             {{ option.label }}
@@ -17,7 +17,7 @@
       <div class="relative flex-1">
         <span v-if="inputPrefix" class="absolute left-4 top-1/2 -translate-y-1/2 text-primary font-bold select-none z-10">{{ inputPrefix }}</span>
         <input
-          class="w-full h-14 pr-4 rounded-md border-2 border-outline-variant bg-surface focus:border-primary focus:ring-0 outline-none font-medium text-headline-sm font-headline-sm transition-all font-['Geist_Mono',monospace]"
+          class="w-full h-14 pl-14 pr-4 rounded-md border-2 border-outline-variant bg-surface focus:border-primary focus:ring-0 outline-none font-medium text-headline-sm transition-all font-['Geist_Mono',monospace]"
           :class="inputPrefix === 'DP$' ? 'pl-14' : 'pl-11'"
           :placeholder="inputPlaceholder"
           type="text"
@@ -42,7 +42,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits, ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 
 const props = defineProps<{
   label: string

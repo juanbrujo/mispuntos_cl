@@ -10,6 +10,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       appName: 'Mis Puntos 🇨🇱',
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL
     },
   },
 

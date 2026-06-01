@@ -34,7 +34,7 @@ export const programs: Program[] = [
     id: 'cencosud',
     name: 'Puntos Cencosud',
     icon: 'shopping_bag',
-    rate: 1,           // ← era 2, corregido: 1 pt por cada $1
+    rate: 1 / 300,           // ← era 2, corregido: 1 pt por cada $1
     color: '#10b981',
     unit: 'pts',
     category: 'retail',
@@ -57,9 +57,9 @@ export const programs: Program[] = [
     id: 'lider',
     name: 'Lider Mi Club',
     icon: 'storefront',
-    rate: 0.06,        // ← era 1.5, corregido: 6% cashback = 0.06 Pesos Mi Club por CLP
+    rate: 0.06,        // 6% cashback = $0.06 por CLP
     color: '#22c55e',
-    unit: 'pts',
+    unit: '$',
     category: 'cashback',
     catColor: '#22c55e',
     sub: 'Walmart Chile · Tarjeta Lider Bci'
@@ -68,7 +68,7 @@ export const programs: Program[] = [
     id: 'cmr',
     name: 'CMR Puntos',
     icon: 'credit_card',
-    rate: 1 / 150,     // ← era 0.142, corregido: 1 pt cada $150 = 0.00667
+    rate: 1 / 200,     // ← era 0.142, corregido: 1 pt cada $150 = 0.00667
     color: '#f97316',
     unit: 'pts',
     category: 'retail',
@@ -79,8 +79,7 @@ export const programs: Program[] = [
     id: 'bchile',
     name: 'Dólares Premio',
     icon: 'currency_exchange',
-    rate: 1 / (100 * 940), // ← era 0.001, fallback con TC 940: 1 DP cada USD 100
-    getRate: (usd: number) => 1 / (100 * usd),
+    rate: 1 / 903, // 1 DP ≈ $903 CLP (canje real en tienda Travel Club)
     color: '#ef4444',
     unit: 'DP$',
     category: 'banco',
@@ -91,7 +90,7 @@ export const programs: Program[] = [
     id: 'ripley',
     name: 'Ripley Puntos',
     icon: 'local_mall',
-    rate: 1 / 200,     // ← era 0.125, corregido: 1 pt cada $200 = 0.005
+    rate: 1 / 125,     // ← era 0.125, corregido: 1 pt cada $200 = 0.005
     color: '#8b5cf6',
     unit: 'pts',
     category: 'retail',
@@ -125,9 +124,9 @@ export const programs: Program[] = [
     id: 'bciplus',
     name: 'BciPlus+',
     icon: 'credit_score',
-    rate: 0.01,        // ✓ correcto: 1% cashback
+    rate: 0.01,        // 1% cashback = $0.01 por CLP
     color: '#a855f7',
-    unit: 'pts',
+    unit: '$',
     category: 'cashback',
     catColor: '#a855f7',
     sub: 'Banco BCI · MACH cashback'

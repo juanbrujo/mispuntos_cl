@@ -2,7 +2,7 @@
   <TopAppBar :title="appName" :colorMode="colorMode" @toggle-theme="toggleColorMode" @logo-click="() => {}" />
 
   <!-- Main Content Layout -->
-  <div class="flex-grow pt-32 pb-8 px-[var(--margin-mobile)] md:px-[var(--margin-desktop)] max-w-4xl mx-auto w-full" id="main-content">
+  <div class="flex-grow pt-32 pb-4 px-[var(--margin-mobile)] md:px-[var(--margin-desktop)] max-w-4xl mx-auto w-full" id="main-content">
     <!-- Input Card -->
     <section class="mb-xl">
       <InputCard
@@ -48,12 +48,14 @@
             :chipLabel="card.chipLabel"
             :chipColor="card.chipColor"
             :chipTextColor="card.chipTextColor"
+            :checked="checkedCards.has(card.programName)"
             draggable="true"
             @dragstart="onDragStart(card.programName, $event)"
             @dragend="onDragEnd"
             @touchstart="onTouchStart(card.programName, $event)"
             @touchmove="onTouchMove"
             @touchend="onTouchEnd"
+            @toggle="toggleCard(card.programName)"
           />
         </template>
 
@@ -68,10 +70,13 @@
       </div>
     </ClientOnly>
 
-    <!-- Action Buttons -->
-    <div class="mt-xl gap-md">
-      <ActionButton icon="share" color="whatsapp">WhatsApp</ActionButton>
-    </div>
+    <WhatsAppShare
+      :visible="checkedCards.size > 0"
+      :baseName="selectedProgramName"
+      :baseLabel="selectedProgramLabel"
+      :cards="checkedCardsData"
+      :siteUrl="siteUrl"
+    />
   </div>
 
   <!-- Virtual Keyboard (Mobile Only) -->
@@ -92,8 +97,8 @@ import { ref, watch, onMounted, computed } from 'vue'
 import TopAppBar from '../components/ui/top-app-bar/TopAppBar.vue'
 import InputCard from '../components/ui/input-card/InputCard.vue'
 import ResultCard from '../components/ui/result-card/ResultCard.vue'
-import { ActionButton } from '../components/ui/action-button'
 import { SiteFooter } from '../components/ui/site-footer'
+import { WhatsAppShare } from '../components/ui/whatsapp-share'
 import { VirtualKeyboard } from '../components/ui/virtual-keyboard'
 import type { ProgramOption } from '../components/ui/input-card/InputCard.vue'
 import { programs, CATEGORY_LABELS } from './data/programs'
@@ -104,12 +109,13 @@ import { storeToRefs } from 'pinia'
 import { useUsdRateStore } from './stores/usdRate'
 import Preloader from '../components/ui/preloader/Preloader.vue'
 
-const { public: { appName } } = useRuntimeConfig()
+const { public: { appName, siteUrl } } = useRuntimeConfig()
 
 // ── State: UI ──
 const isMobile = ref(false)
 const keyboardVisible = ref(false)
 const validationMsg = ref<string>('')
+const checkedCards = ref<Set<string>>(new Set())
 const preloaderReady = ref(false)
 
 // Esperar a que Material Icons y USD estén listos
@@ -155,10 +161,11 @@ const inputPrefix = computed(() => {
   if (selectedProgram.value === 'clp') return '$'
   if (selectedProgram.value === 'bchile') return 'DP$'
   if (selectedProgram.value === 'latam') return 'Mi'
+  if (selectedProgram.value === 'lider' || selectedProgram.value === 'bciplus') return '$'
   return 'P✺'
 })
 const inputPlaceholder = computed(() => {
-  if (selectedProgram.value === 'clp' || selectedProgram.value === 'bchile') return 'Monto'
+  if (selectedProgram.value === 'clp' || selectedProgram.value === 'bchile' || selectedProgram.value === 'bciplus' || selectedProgram.value === 'lider') return 'Monto'
   if (selectedProgram.value === 'latam') return 'Millas'
   return 'Puntos'
 })
@@ -223,6 +230,26 @@ const sortedResultCards = computed(() => {
   })
 })
 
+const selectedProgramName = computed(() => {
+  return programs.find(p => p.id === selectedProgram.value)?.name ?? ''
+})
+
+const selectedProgramLabel = computed(() => {
+  const raw = inputValue.value.replace(/\D/g, '') || '0'
+  const formatted = Number(raw).toLocaleString('es-CL')
+  const prefix = inputPrefix.value
+  // Prefijo antes del monto ($, DP$) o después (Mi, P✺)
+  if (prefix === '$' || prefix === 'DP$') return `${prefix}${formatted}`
+  return `${formatted} ${prefix}`
+})
+
+const checkedCardsData = computed(() => {
+  const names = checkedCards.value
+  return sortedResultCards.value
+    .filter(c => names.has(c.programName))
+    .map(c => ({ programName: c.programName, points: c.points, unit: c.unit }))
+})
+
 // ── Functions: Virtual Keyboard ──
 function onKeyboardKey(key: string) {
   if (!/^\d$/.test(key)) return
@@ -233,6 +260,17 @@ function onKeyboardKey(key: string) {
 function onKeyboardBackspace() { inputValue.value = inputValue.value.slice(0, -1) }
 function onKeyboardClear() { inputValue.value = '' }
 function onKeyboardDone() { keyboardVisible.value = false }
+
+function toggleCard(name: string) {
+  const raw = inputValue.value.replace(/\D/g, '')
+  if (!raw || raw === '0') return
+  const next = new Set(checkedCards.value)
+  if (next.has(name)) next.delete(name)
+  else next.add(name)
+  checkedCards.value = next
+}
+
+
 
 // ── Lifecycle ──
 onMounted(() => {
@@ -255,6 +293,13 @@ watch(keyboardVisible, (visible) => {
     document.documentElement.style.overflow = 'hidden'
   } else {
     document.documentElement.style.overflow = ''
+  }
+})
+
+watch(inputValue, (val) => {
+  const raw = String(val).replace(/\D/g, '')
+  if (!raw || raw === '0') {
+    checkedCards.value = new Set()
   }
 })
 </script>

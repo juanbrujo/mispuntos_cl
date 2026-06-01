@@ -19,8 +19,8 @@
         <span v-else-if="key === 'clear'">C</span>
       </button>
     </div>
-    <div class="bg-surface-container-high py-2 flex justify-center">
-      <button class="text-primary font-bold px-8 py-2 w-full flex items-center justify-center gap-1 uppercase" @click="onDone">
+    <div class="bg-surface-container-high flex justify-center">
+      <button class="bg-primary text-white font-bold px-8 py-4 w-full flex items-center justify-center gap-1 uppercase" @click="onDone">
         Cerrar
         <span class="material-symbols-outlined">keyboard_arrow_down</span>
       </button>
@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps, defineEmits } from 'vue'
+
 
 const props = defineProps<{
   visible: boolean
