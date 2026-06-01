@@ -7,10 +7,14 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
+  nitro: {
+    preset: 'vercel',
+  },
+
   runtimeConfig: {
     public: {
       appName: 'Mis Puntos 🇨🇱',
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://mispuntos.cl',
     },
   },
 

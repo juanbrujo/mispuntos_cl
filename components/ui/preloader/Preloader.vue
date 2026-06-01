@@ -11,23 +11,23 @@
 
 <script setup lang="ts">
 import { ref, watch, onMounted, onBeforeUnmount } from 'vue'
-import lottie from 'lottie-web'
 
 const props = defineProps<{
   ready: boolean
 }>()
 
 const lottieContainer = ref<HTMLElement | null>(null)
-let animation: ReturnType<typeof lottie.loadAnimation> | null = null
+let animation: ReturnType<typeof import('lottie-web').default.loadAnimation> | null = null
 
 onMounted(async () => {
   document.body.style.overflow = 'hidden'
 
   try {
+    const lottie = await import('lottie-web')
     const res = await fetch('/loader.json')
     const loaderData = await res.json()
     if (lottieContainer.value) {
-      animation = lottie.loadAnimation({
+      animation = lottie.default.loadAnimation({
         container: lottieContainer.value,
         renderer: 'svg',
         loop: true,
@@ -36,7 +36,7 @@ onMounted(async () => {
       })
     }
   } catch {
-    // Si falla la carga del JSON, el spinner CSS queda como fallback
+    // Si falla, el preloader sigue funcionando sin animación
   }
 })
 
