@@ -1,7 +1,16 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  ssr: false,
   compatibilityDate: '2026-05-31',
   devtools: { enabled: true },
+
+  vite: {
+    optimizeDeps: {
+      include: [
+        'lottie-web',
+      ],
+    },
+  },
 
   nitro: {
     preset: 'vercel',
