@@ -1,4 +1,4 @@
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue'
 
 export function useColorMode() {
   const colorMode = ref<'light' | 'dark'>('light')
@@ -6,7 +6,9 @@ export function useColorMode() {
 
   function setColorMode(mode: 'light' | 'dark') {
     colorMode.value = mode
-    document.documentElement.classList.toggle('dark', mode === 'dark')
+    if (import.meta.client) {
+      document.documentElement.classList.toggle('dark', mode === 'dark')
+    }
   }
 
   function applyAutoColorMode(mode: 'light' | 'dark') {
@@ -14,6 +16,7 @@ export function useColorMode() {
   }
 
   function toggleColorMode() {
+    if (import.meta.server) return
     const next = colorMode.value === 'dark' ? 'light' : 'dark'
     hasManualOverride.value = true
     localStorage.setItem('color-mode', next)
@@ -21,6 +24,7 @@ export function useColorMode() {
   }
 
   function initColorMode() {
+    if (import.meta.server) return
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)')
     const saved = localStorage.getItem('color-mode')
     if (saved === 'dark' || saved === 'light') {

@@ -1,10 +1,6 @@
-import tsconfigPaths from 'vite-tsconfig-paths'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  vite: {
-    plugins: [tsconfigPaths()]
-  },
-  compatibilityDate: '2025-07-15',
+  compatibilityDate: '2026-05-31',
   devtools: { enabled: true },
 
   nitro: {

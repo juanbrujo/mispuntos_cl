@@ -287,6 +287,7 @@ watch(selectedProgram, () => {
 })
 
 watch(keyboardVisible, (visible) => {
+  if (import.meta.server) return
   if (!isMobile.value) return
   if (visible) {
     window.scrollTo({ top: 0, behavior: 'smooth' })
