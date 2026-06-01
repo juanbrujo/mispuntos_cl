@@ -25,7 +25,7 @@ describe('VirtualKeyboard', () => {
     await wrapper.findAll('button.keyboard-key')[9].trigger('click')
     expect(wrapper.emitted('clear')).toBeTruthy()
     // done
-    await wrapper.find('button.text-primary').trigger('click')
+    await wrapper.find('button.bg-primary').trigger('click')
     expect(wrapper.emitted('done')).toBeTruthy()
   })
 })
