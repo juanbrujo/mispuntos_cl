@@ -18,8 +18,8 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      appName: 'Mis Puntos',
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://mispuntos.cl',
+      appName: 'Puntería',
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://punteria.devschile.cl',
     },
   },
 
@@ -49,8 +49,8 @@ export default defineNuxtConfig({
     registerType: 'autoUpdate',
     includeAssets: ['favicon.png', 'pwa-192x192.png', 'pwa-512x512.png'],
     manifest: {
-      name: 'Mis Puntos 🇨🇱',
-      short_name: 'MisPuntosCL',
+      name: 'Puntería',
+      short_name: 'Puntería',
       description:
         'Convierte y compara programas de recompensas y fidelización en pesos chilenos',
       theme_color: '#131313',
@@ -85,7 +85,7 @@ export default defineNuxtConfig({
           urlPattern: /^https?:\/\/.*/i,
           handler: 'NetworkFirst',
           options: {
-            cacheName: 'mispuntos-cache',
+            cacheName: 'punteria-cache',
             expiration: {
               maxEntries: 200,
               maxAgeSeconds: 60 * 60 * 24 * 30
@@ -101,16 +101,16 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'Mis Puntos',
+      title: 'Puntería',
       meta: [
         { name: 'description', content: 'Convierte y compara programas de recompensas y fidelización en pesos chilenos' },
         { name: 'theme-color', content: '#131313' },
-        { property: 'og:title', content: 'Mis Puntos CL' },
+        { property: 'og:title', content: 'Puntería' },
         { property: 'og:description', content: 'Convierte y compara programas de recompensas y fidelización en pesos chilenos' },
         { property: 'og:type', content: 'website' },
         { property: 'og:image', content: '/social.jpg' },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:title', content: 'Mis Puntos CL' },
+        { name: 'twitter:title', content: 'Puntería' },
         { name: 'twitter:description', content: 'Convierte y compara programas de recompensas y fidelización en pesos chilenos' },
         { name: 'twitter:image', content: '/social.jpg' }
       ],

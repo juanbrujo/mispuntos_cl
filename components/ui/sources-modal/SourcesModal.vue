@@ -46,7 +46,7 @@
 
             <!-- Disclaimer -->
             <div class="mt-6 text-xs text-on-surface-variant leading-relaxed p-4 border border-dashed border-primary rounded-lg">
-              ⚠️ Los valores son referenciales y pueden cambiar sin aviso. SKY Plus no publica valor monetario oficial por punto; se usa ~USD 0,01/pto como referencia de mercado. BCI Puntos y Pesos OpenSky finalizaron en jul-2025; se muestra BciPlus+ (cashback 1%). Verifica siempre en los sitios oficiales de cada programa antes de tomar decisiones financieras.
+              ⚠️ Los valores son referenciales y pueden cambiar sin aviso. CMR y LATAM tienen diferentes factores dependiento del programa específico. SKY Plus no publica valor monetario oficial por punto; se usa ~USD 0,01/pto como referencia de mercado. BCI Puntos y Pesos OpenSky finalizaron en jul-2025; se muestra BciPlus+ (cashback 1%). Verifica siempre en los sitios oficiales de cada programa antes de tomar decisiones financieras.
             </div>
           </div>
         </div>

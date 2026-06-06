@@ -1,4 +1,4 @@
-# Mis Puntos 🇨🇱
+# Puntería
 
 Convierte y compara programas de recompensas y fidelización en pesos chilenos.
 
@@ -45,7 +45,7 @@ pnpm test:coverage     # con reporte de cobertura
 
 | Variable | Descripción | Ejemplo |
 |---|---|---|
-| `NUXT_PUBLIC_SITE_URL` | URL del sitio para compartir | `https://mispuntos.cl` |
+| `NUXT_PUBLIC_SITE_URL` | URL del sitio para compartir | `https://punteria.devschile.cl` |
 
 ## USD / CLP
 

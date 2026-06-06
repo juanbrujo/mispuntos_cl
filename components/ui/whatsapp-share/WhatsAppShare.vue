@@ -37,7 +37,7 @@ const props = defineProps<{
 }>()
 
 function share() {
-  const url = props.siteUrl || 'https://mispuntos.cl'
+  const url = props.siteUrl || 'https://punteria.devschile.cl'
 
   let text = `*Convertí ${props.baseLabel} ${props.baseName}* a:\n\n`
 

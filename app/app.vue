@@ -270,8 +270,6 @@ function toggleCard(name: string) {
   checkedCards.value = next
 }
 
-
-
 // ── Lifecycle ──
 onMounted(() => {
   isMobile.value = window.matchMedia('(max-width: 767px)').matches
