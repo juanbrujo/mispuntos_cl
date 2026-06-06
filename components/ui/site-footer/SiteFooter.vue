@@ -4,7 +4,7 @@
       Los valores son referenciales y pueden variar según promociones vigentes. Las conversiones se basan en canjes estándar de catálogo.
       <button class="text-primary underline hover:no-underline cursor-pointer" @click="showModal = true">Ver detalle</button>.
     </p>
-    <p class="font-label-sm text-sm text-stone-400 font-light mt-sm">© 2026 {{ title }}</p>
+    <p class="font-label-sm text-sm text-stone-400 font-light mt-sm">© 2026 {{ title }}. Otro proyecto devsChile sin © pero con ❤️‍🔥.</p>
   </footer>
 
   <SourcesModal
