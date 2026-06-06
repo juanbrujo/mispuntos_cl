@@ -26,4 +26,3 @@ logs
 !.env.example
 
 coverage/
-# _design/
